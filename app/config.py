@@ -23,6 +23,27 @@ class Config:
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     # Disables SQLAlchemy's event system for model changes; not needed and causes a deprecation warning
 
+    # Inside class Config:
+    API_TITLE = 'Task & CRM API'
+    API_VERSION = 'v1'
+    OPENAPI_VERSION = '3.0.3'
+    OPENAPI_URL_PREFIX = '/'
+    OPENAPI_SWAGGER_UI_PATH = '/docs'
+    OPENAPI_SWAGGER_UI_URL = 'https://cdn.jsdelivr.net/npm/swagger-ui-dist/'
+
+    API_SPEC_OPTIONS = {
+        'security': [{'BearerAuth': []}],
+        'components': {
+            'securitySchemes': {
+                'BearerAuth': {
+                    'type': 'http',
+                    'scheme': 'bearer',
+                    'bearerFormat': 'JWT',
+                }
+            }
+        },
+    }
+
 
 class DevelopmentConfig(Config):          # inherits all settings from Config
     DEBUG = True                          # enables Flask's debugger and auto-reloader in dev
